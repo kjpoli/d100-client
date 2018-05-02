@@ -1,0 +1,385 @@
+
+$fa-font-path: "../node_modules/font-awesome/fonts";
+$ra-font-path: "../node_modules/rpg-awesome/fonts";
+@import "node_modules/font-awesome/scss/font-awesome.scss";
+@import "node_modules/rpg-awesome/scss/rpg-awesome.scss";
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+$brand-primary: #f4ee42; 
+$twitter-primary: #4f4f4f;
+$black: #4f4f4f; 
+$white: #FFFFFF;
+
+
+
+$twitter-bg: #afafaf;
+$green: #acaf00;
+$red: #ff6051; 
+
+.color-inv {
+          background-color: $black;
+          color: $white;
+}
+    
+body {
+    font-family: 'Source Sans Pro';
+    font-weight: 500;
+    padding: 40px;
+}
+p {
+    font-family: 'Source Sans Pro';
+    font-size: 14pt;
+}
+h1 {
+    color: $black;
+    font-weight: 700;
+}
+h4 {
+    color: $black;
+}
+.brand-header {
+    font-weight: 600;
+    text-align: center;
+    font-size: 60pt;
+    font-weight: 900;
+    .fa-check {
+        color: $green;
+    }
+    .fa-remove {
+        color: $red;
+    }
+    
+}
+
+.primary {
+    color: $twitter-primary;
+}
+.card {
+    
+    
+    .card-header{
+        letter-spacing: 5px;
+        background-color: $twitter-primary;
+        font-weight: 700;
+        border-radius: 12px 12px 0 0;
+    }
+    .card-block p { 
+        color: $black;
+    }
+    .card-main {
+        background-color: $twitter-bg;
+    }
+    .card-footer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        line-height: 8px;
+        text-align: center;
+        width: 100%;
+        border-radius: 0 0 12px 12px;;
+        background-color: $twitter-primary;
+        color: $twitter-bg;
+        border: transparent;
+    }
+    border-radius: 12px;
+    color: $white;
+    hr{
+        background-color: $twitter-primary;
+    }
+    .card-header h1{
+        font-size: 40pt;
+        color: $white;
+        padding-top: 10px;
+    }
+}
+.btn {
+    
+    &.btn-primary {
+        background-color: $black;
+        color: $white;
+        border: 0px transparent solid;
+        border-bottom: 3px $twitter-bg solid;   
+        &:hover {
+            background-color: lighten($black,10%);
+        }
+    }
+    &.btn-transparent {
+        font-size: 9pt;
+        background-color: transparent;
+        border: 0px transparent solid;
+        color: $black;
+        text-transform: uppercase;
+    }
+    font-weight: bold;
+    font-size: 8pt;
+    
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+    border-top: 1px $twitter-primary solid;
+    color: $black;
+}
+i {
+    margin-left: 6px;
+    margin-right: 6px;
+}
+.tool {
+    font-size: 15px;
+    line-height: 23px;
+    text-align: center;
+    width: 23px;
+    height: 23px;
+    color: $white;
+    &.fa-check {
+        background-color: $green;
+    }
+    &.fa-remove {
+        background-color: $red;
+    }
+    border-radius: 50%;
+}
+blockquote {
+    color: $black;
+}
+.tweet-options {
+    margin-right: -15px;
+    margin-top: -15px;
+}
+
+
+.display-profile {
+    
+    padding: 0px !important;
+    text-align: center;
+   
+    .ra {
+        padding: 10px;
+        background-color: transparent;
+        border-radius: 50%;
+        color: $black;
+    }
+    
+}
+.display-avi {
+    border-radius: 50%;
+    width: 120px;
+    margin-bottom: -60px;
+    margin-top: 20px;
+}
+
+.display-bio {
+    width: auto;
+    background-color: transparent;
+}
+
+.entry-header {
+    font-size: 24pt;
+    padding-top: 15px;
+    color: $black;
+    font-style: italic;
+}
+.foot-info { 
+    font-size: 14pt;
+    color: $black;
+    font-style: italic;
+    font-weight: normal;
+    .lvl {
+        font-style: normal;
+        font-weight: bold;
+    }
+}
+.separator {
+    width: 80%;
+    
+    &.vert{
+        width:2px;
+        background-color: $black;
+    }
+}
+
+.list-group {
+    text-overflow: ellipsis;
+    width: 100%;
+    font-size: 10pt;
+    padding: 20px;
+    color: $black;
+    max-height: 340px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    &.active {
+        color: $black !important;
+        background-color: $white !important;
+    }
+    
+    
+     
+}
+.tracked-stat {
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    min-width: 0;
+         text-align: left;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-style: italic;
+      overflow: hidden;
+      white-space: nowrap;
+      
+}
+.stat-val{
+        text-align: right !important;
+        position: absolute;
+        right: 10%;
+        top: 25%;
+}
+.list-group {
+    width: 100%;
+
+    .list-group-item {
+        overflow: hidden;
+        white-space: nowrap;
+        min-width: 0;
+        min-height: 45px;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        
+        &.active {
+            color: $black;
+            background-color: $white;
+            border: 1px $black solid;
+        }
+    }
+}
+
+.tracked-inv {
+    .tracked-item {
+        background-color: $white;
+        width: 130px;
+    }
+    
+    .inv-title {
+        color: $black;
+    }
+    .inv-card {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+}
+
+.profile-item {
+    border: 0px transparent solid;
+    .ra {
+        background-color: transparent;
+    }
+    .display-bio {
+        background-color: transparent;
+    }
+}
+.badge {
+    font-style: normal;
+    margin-left: 7px;
+    margin-right: 7px;
+    &.badge-dark {
+        background-color: $black;
+    }   
+}
+
+.desc {
+    margin-left: 10%;
+    font-size: 10pt;
+    text-align: left;
+}
+.battle-grid {
+    display: inline-block;
+    padding: 25px;
+}
+.battle-grid-item {
+    vertical-align: top;
+    text-align: center;
+    display: inline-block;
+    border-right: 1px lightgray solid;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    
+    .turn-indicator {
+        color: transparent;
+        border-radius: 50%;
+        position: absolute;
+        right: 10px;
+        top: 55px;
+        
+    }
+    
+    .battle-grid-header {
+        border-right: 1px lightgray solid;
+        width: 124px;
+        display: block;
+        letter-spacing: 1px !important;
+        height: 45px;
+        color: $black;
+        background-color: $white;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    font-size: 12pt;
+    width: 125px;
+    height: 150px;
+    .ra {
+        color: $black;
+    }
+}
+
+.dm-char-control {
+    text-align: center;
+    display: block;
+    
+    .btn {
+        margin: 5px;
+    }
+    
+}
+
+
+.input-group {
+    font-size: 10pt;
+}
+.input-group-prepend {
+    background-color: $black;
+    color: $white;
+    font-weight: bold;
+    font-style: italic;
+    text-transform: uppercase;
+    
+    padding: 10px;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    
+    &.append {
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 7px;
+        border-top-right-radius: 7px;
+    }
+}
+
+.roll-modal-body{
+    text-align: center;
+    padding: 50px;
+    
+    .ra {
+        color: $black;
+        margin-bottom: 20px;
+    }
+    .roll-breakdown {
+        
+        height: 30px;
+    
+        .roll-bd-item {
+            border: 1px lightgray solid;
+            
+        }
+    }
+}
