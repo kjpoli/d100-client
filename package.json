@@ -1,13 +1,14 @@
 {
-  "name": "woketwitter",
+  "name": "dungeon-crawler",
   "version": "1.0.0",
   "description": "find your pre woke period",
   "main": "index.js",
   "scripts": {
+    "start": "node ./js/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node node_modules/bootstrap-4-generator/config/build.js"
   },
-  "author": "Kevin Poli, Ian Wright",
+  "author": "Kevin Poli, Christian Tejada, Philip Vitale",
   "license": "ISC",
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
@@ -21,12 +22,15 @@
   },
   "dependencies": {
     "bootstrap": "^4.1.1",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
     "font-awesome": "^4.7.0",
     "fs-extra": "^3.0.1",
     "gulp-define-module": "^0.1.5",
     "gulp-handlebars": "^4.0.0",
     "gulp-webpack": "^1.5.0",
     "handlebars": "^4.0.11",
+    "mongodb": "^3.0.8",
     "rpg-awesome": "^0.1.1"
   }
 }
