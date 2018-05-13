@@ -1,30 +1,42 @@
 class Frame {
 
-    constructor(obj){
-        this.pid = window.cid;
+    constructor(){
+        this.pid = window.pid;
         this.cid = window.cid;
         this.frameId = '#blank-frame';
-        this.params = obj;
-        //template is a function, not a string
-        // arrow functions do not re map the this keyword
-        // use class members where applicable pass obj for things like filling lists and whatnot
-        this.frame_t = (obj) => {
-            return $.parseHTML(`
+
+        this.sizing = {
+            minWidth: 50,
+            maxWidth: 250,
+            minHeight: 50,
+            maxHeight: 250
+        };
+
+        //returns dom nodes
+        this.frame_t = () => {
+            let nodes = $.parseHTML(`
               <div class="card bg-faded" id="${this.frameId}">
                 <div class="card-header">
                   ${this.windowTitle}
 
                 </div>
-            <div class="card-block bg-faded ${this.contextualClasses}>
+            <div class="card-block bg-faded ${this.contextualClasses}">
 
             </div>
-            `);
+            `.trim());
+
+            $('.card-header', nodes).dblclick( () => $('.card-block',this.content).toggle() );
+            return nodes;
         };
-        this.content = $.parseHTML(this.frame_t(this.params));
+        // blank frames shouldn't eval their content but this is what it would look like
+        //this.content = this.frame_t();
+
     }
     //only run once per frame on document ready
     // use hide and show after
     insert() {
+        $(this.content).appendTo('#drag-container');
+        $(this.content).resizable(this.sizing);
         $(this.content).draggable({
             appendTo: "#drag-container",
             containment: '#drag-container',
@@ -32,9 +44,9 @@ class Frame {
         });
     }
     hide() {
-        $(this.frameId).hide();
+        $(this.content).hide();
     }
     show(){
-        $(this.frameId).show();
+        $(this.content).show();
     }
 }

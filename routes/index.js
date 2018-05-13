@@ -1,6 +1,15 @@
 const express = require('express');
 
 const constructorMethod = (app, passport) => {
+
+    // dev routes for testing, renders a blank gameboard
+    app.get('/dev/game', async (req, res) => {
+        //the gameboard is technically not a layout but has more in common with a layout than
+        // the other templates (contains the head, stuff you cant have twice in a valid document)
+        res.render('./layouts/gameboard.handlebars', {layout:false});
+    });
+    //
+
     app.get('/', async (req, res) => {
         res.render('index.handlebars');
     });
