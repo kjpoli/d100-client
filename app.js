@@ -13,7 +13,9 @@ const mongoConfig = settings.mongoConfig;
 
 let fullMongoUrl = settings.mongoConfig.serverUrl + settings.mongoConfig.database;
 mongoose.connect(fullMongoUrl);
+
 require('./config/passport')(passport);
+const Campaign = require('./models/campaign');
 
 const app = express();
 const static = express.static(__dirname + '/public');
@@ -24,10 +26,10 @@ const expressHandlebars = require('express-handlebars');
 app.use(morgan('dev'));
 app.use('/public', static);
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use(session({ secret: 'dungeoncrawlersbiggestsecretsession' }));
+app.use(session({ secret: 'dungeoncrawlersbiggestsecretsession', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
