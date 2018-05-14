@@ -1,6 +1,7 @@
 const express = require('express');
 
 const constructorMethod = (app, passport) => {
+    var campaign = require('../controllers/campaignController');
 
     // dev routes for testing, renders a blank gameboard
     app.get('/dev/game', async (req, res) => {
@@ -11,33 +12,65 @@ const constructorMethod = (app, passport) => {
     //
 
     app.get('/', async (req, res) => {
-        res.render('index.handlebars');
+        res.render('index');
     });
 
     app.get('/login', async (req, res) => {
-        res.render('login.handlebars', { message: req.flash('loginMessage') });
+        res.render('login', { message: req.flash('loginMessage') });
     });
 
     app.get('/signup', async (req, res) => {
-        res.render('signup.handlebars', { message: req.flash('signupMessage') });
+        res.render('signup', { message: req.flash('signupMessage') });
     });
 
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/profile',
+        successRedirect : '/campaign',
         failureRedirect : '/signup',
         failureFlash : true
     }));
 
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile',
+        successRedirect : '/campaign',
         failureRedirect : '/login',
         failureFlash : true
     }));
-
+/*
     app.get('/profile', isLoggedIn, async (req, res) => {
-        res.render('profile.handlebars', { user: req.user });
+        res.render('profile', { user: req.user });
+    });
+*/
+    app.get('/campaign', isLoggedIn, async (req, res) => {
+        res.render('campaign', { user: req.user });
     });
 
+    app.get('/campaign/create', isLoggedIn, async (req, res) => {
+        res.render('createCampaign', { user: req.user });
+    });
+
+    app.post('/campaign/create', isLoggedIn, campaign.createCampaign);
+    
+    app.get('/campaign/join', isLoggedIn, async (req, res) => {
+        res.redirect(`/campaign/${req.body.campaignId}`);
+    });
+
+    app.get('/campaign/:id', isLoggedIn, campaign.joinCampaign);
+
+//    app.post('/campaign/:id', isLoggedIn, 
+    /*
+    app.get('/campaign/:id/create', isLoggedIn, async (req, res) => {
+        res.render('createCharacter');
+    });
+
+    app.get('/campaign/create', isLoggedIn, async (req, res) => {
+        res.render('createCampaign.handlebars', { user: req.user });
+    });
+
+    app.post('/campaign/create', isLoggedIn, campaign.createCampaign);
+    
+    app.get('/character', isLoggedIn, async (req, res) => {
+        res.render('character');
+    });
+*/
     app.get('/logout', async (req, res) => {
         req.logout();
         res.redirect('/');
