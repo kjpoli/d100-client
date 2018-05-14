@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <div class="container">
     <div class="col-sm-12">
         <h1>Campaign Select</h1>
@@ -16,17 +17,14 @@
 
         <ul id="existingCampaigns">
             {{#each user.campaigns}}
-                <li>{{this}}</li>
+            <li><a href="/campaign/{{{this._id}}}">{{this.name}}</a></li>
             {{/each}}
         </ul>
 
         <p>or</p>
 
         <h1>Create Campaign</h1>
-        <form action="/campaign" method="post">
-            <div class="form-group">
-                <input type="text" class="form-control" name="campaignName" placeholder="Enter name for new campaign here...">
-            </div>
+        <form action="/campaign/create" method="get">
             <button type="submit" class="btn btn-warning btn-lg">Create Campaign</button>
         </form>
         <p><a href="/logout" class="btn btn-default btn-lg">Logout</a></p>

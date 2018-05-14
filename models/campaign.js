@@ -7,7 +7,8 @@ var campaignSchema = mongoose.Schema({
     dm: { _id: { type: ObjectId, ref: 'User' } },
     players: [{ _id: { type: ObjectId, ref: 'User' } }],
     characters: [CharacterSchema],
-    notes: [String]
+    notes: [String],
+    attributeTemplate: [{ name: String, primary: Boolean }]
 });
 
 module.exports = mongoose.model('Campaign', campaignSchema);

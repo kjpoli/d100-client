@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="col-sm-12">
+        <h1>Create a Campaign</h1>
+        {{#if message}}
+        {{#each message}}
+            <div class="alert alert-danger">{{this}}</div>
+        {{/each}}
+        {{/if}}
+
+        <form action="/campaign/create" method="post">
+            <input type="text" class = "form-control" name="campaignName" placeholder="Campaign Name">
+            <div id="attributeFields">
+                <div class="input-group mb-1" id="attRow1">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" class="primaryAttBox" name="primaryAtt1" id="primaryAtt1" value="true">
+                        </div>
+                    </div>
+                    <input type="text" class="form-control attField" name="att1" id="att1" placeholder="Attribute">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button type="button" name="addAttribute" id="addAttribute" class="btn btn-warning btn-lg">Add</button>
+                </div>
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-warning btn-lg">Create Character Template</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
