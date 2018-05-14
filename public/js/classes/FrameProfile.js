@@ -1,7 +1,7 @@
 class FrameProfile extends Frame {
     constructor(obj){
         super();
-        this.frameId = '#profile-frame:id-' + obj.pid;
+        this.frameId = '#profile-frame:id-' + obj._id;
         this.contextualClasses = 'display-profile';
         this.windowTitle = 'Character';
         this.character = obj;

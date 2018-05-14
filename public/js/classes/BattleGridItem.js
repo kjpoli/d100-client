@@ -4,6 +4,7 @@
         this.name = obj.name;
         this.pid = obj.pid;
         this.icon = obj.icon;
+        this.id = obj._id;
         //acceptible injury statuses are normal | injured | near death
         // dead characters battle grid items are hidden
         this.injStatus = obj.injStatus ? obj.injStatus : 'normal';
