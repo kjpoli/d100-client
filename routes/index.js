@@ -9,7 +9,9 @@ const constructorMethod = (app, passport) => {
         // the other templates (contains the head, stuff you cant have twice in a valid document)
         res.render('./layouts/gameboard.handlebars', {layout:false});
     });
-    //
+    app.get('/dev/refcards', async (req, res) => {
+        res.render('profile');
+    });
 
     app.get('/', async (req, res) => {
         res.render('index');
@@ -48,14 +50,14 @@ const constructorMethod = (app, passport) => {
     });
 
     app.post('/campaign/create', isLoggedIn, campaign.createCampaign);
-    
+
     app.get('/campaign/join', isLoggedIn, async (req, res) => {
         res.redirect(`/campaign/${req.body.campaignId}`);
     });
 
     app.get('/campaign/:id', isLoggedIn, campaign.joinCampaign);
 
-//    app.post('/campaign/:id', isLoggedIn, 
+//    app.post('/campaign/:id', isLoggedIn,
     /*
     app.get('/campaign/:id/create', isLoggedIn, async (req, res) => {
         res.render('createCharacter');
@@ -66,7 +68,7 @@ const constructorMethod = (app, passport) => {
     });
 
     app.post('/campaign/create', isLoggedIn, campaign.createCampaign);
-    
+
     app.get('/character', isLoggedIn, async (req, res) => {
         res.render('character');
     });
