@@ -60,6 +60,7 @@ h4 {
     padding: 40px;
 }
 .card {
+   background-color: transparent;
    border: 0px transparent solid; 
     
     .card-header{
@@ -209,8 +210,8 @@ blockquote {
     font-size: 10pt;
     padding: 20px;
     color: $black;
-    min-height: 300px;
-    max-height: 750px;
+    height: 450px;
+    max-height: 100%;
     overflow-y: auto;
     overflow-x: hidden !important;
     -webkit-overflow-scrolling: touch;
@@ -302,8 +303,9 @@ blockquote {
     text-align: left;
 }
 .battle-grid {
-    position: fixed;
-    left: 40%;
+    position: absolute;
+    width: 80%;
+    left: 10%;
     border: 1px lightgray solid;
     display: inline-block;
     padding: 25px;
@@ -325,13 +327,13 @@ blockquote {
         right: 10px;
         top: 55px;
         &.turn {
-            display: default;
+            display: block;
         }
         
     }
     
     .battle-grid-header {
-        border-right: 1px lightgray solid;
+        border: 1px lightgray solid;
         width: 124px;
         display: block;
         letter-spacing: 1px !important;
@@ -347,6 +349,11 @@ blockquote {
     height: 150px;
     .ra {
         color: $black;
+    }
+    .card-block {
+        height: 110px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
     }
 }
 

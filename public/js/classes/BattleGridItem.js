@@ -1,4 +1,4 @@
-class BattleGridItem {
+ class BattleGridItem {
     //pass it a character document
     constructor(obj){
         this.name = obj.name;
@@ -16,7 +16,7 @@ class BattleGridItem {
                   ${this.name}
                 </div>
                 <div class="card-block">
-                  <i class="ra ${this.icon} ra-3x"> </i>
+                  <i class="ra ${this.icon} ra-4x"> </i>
                   <span class="badge badge-hidden inj-indicator"> ${this.injStatus} </span>
                   <span class="badge badge-success turn-indicator">o</span>
                 </div>
@@ -30,27 +30,61 @@ class BattleGridItem {
     // if args, set inj status
     injuryStatus(status){
         let indc = $('.inj-indicator', this.content);
+        let iconc = $('.ra', this.content);
+        let badge;
         if(status){
-            this.injStatus = status;
-            indc.html(status);
-        }else{
-            var badge;
-            switch(this.injStatus){
-                case ('normal'):
+            switch(status){
+                case 'normal':
+                    badge = {status: 'normal', class: 'badge-hidden'};
+                    iconc.removeClass('ra-3x');
+                    iconc.addClass('ra-4x');
+                    break;
+                case 'injured':
                     badge = {status: 'injured', class: 'badge-warning'};
+                    iconc.removeClass('ra-4x');
+                    iconc.addClass('ra-3x');
+                    break;
+                case 'near-death':
+                    badge = {status: 'near-death', class: 'badge-danger'};
+                    iconc.removeClass('ra-4x');
+                    iconc.addClass('ra-3x');
+                    break;
+            }
+        }else{
+            switch(this.injStatus){
+                case 'normal':
+                    badge = {status: 'injured', class: 'badge-warning'};
+                    iconc.removeClass('ra-4x');
+                    iconc.addClass('ra-3x');
+                    $(this.content).effect('shake');
+                    break;
                 case 'injured':
                     badge = {status: 'near-death', class: 'badge-danger'};
+                    $(this.content).effect('shake');
+                    break;
                 case 'near-death':
                     badge = {status: 'normal', class: 'badge-hidden'};
+                    iconc.removeClass('ra-3x');
+                    iconc.addClass('ra-4x');
+                    break;
             }
-            indc.html(badge.status);
-            indc.removeClass('badge-danger badge-hidden badge-warning');
-            indc.addClass(badge.class);
-            this.injStatus = badge.status;
+
         }
+        indc.html(badge.status);
+        indc.removeClass('badge-danger badge-hidden badge-warning');
+        indc.addClass(badge.class);
+        this.injStatus = badge.status;
     }
     toggleTurn(){
         $('.turn-indicator', this.content).toggleClass('turn');
+    }
+    //removes or adds from grid with slide effect
+    toggleVisible(){
+        $(this.content).animate({width: 'toggle'}, 300);
+    }
+    //removes from grid with puff effect
+    kill(){
+        $(this.content).effect('puff');
     }
 
 }

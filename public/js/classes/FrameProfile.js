@@ -1,7 +1,7 @@
 class FrameProfile extends Frame {
     constructor(obj){
-        super(obj);
-        this.frameId = '#profile-frame';
+        super();
+        this.frameId = '#profile-frame:id-' + obj.pid;
         this.contextualClasses = 'display-profile';
         this.windowTitle = 'Character';
         this.character = obj;
@@ -9,7 +9,7 @@ class FrameProfile extends Frame {
         this.sizing = {
             minWidth: 300,
             maxWidth: 550,
-            minHeight: 500,
+            minHeight: 740,
             maxHeight: 750
         };
 
