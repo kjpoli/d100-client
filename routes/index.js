@@ -57,6 +57,12 @@ const constructorMethod = (app, passport) => {
         var campaignId = q.query.campaignId;
         res.redirect(`/campaign/${campaignId}`);
     });
+/*
+    app.get('/campaign/character', isLoggedIn, async (req, res) => {
+        res.render('createCharacter', { campaignId: req.param.id });
+    });
+*/
+    app.post('/campaign/character', isLoggedIn, campaign.createCharacter);
 
     app.get('/campaign/:id', isLoggedIn, campaign.joinCampaign);
 
