@@ -1,4 +1,4 @@
-var socket = io('http://localhost:3000');
+var socket = io();
 //get campaign from db
 var bg = [];
 var players = [];
