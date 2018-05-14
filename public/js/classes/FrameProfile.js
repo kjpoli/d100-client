@@ -6,6 +6,13 @@ class FrameProfile extends Frame {
         this.windowTitle = 'Character';
         this.character = obj;
 
+        this.sizing = {
+            minWidth: 300,
+            maxWidth: 550,
+            minHeight: 500,
+            maxHeight: 750
+        };
+
         //redraw frame skeleton with contextual info and shit
         this.content = this.frame_t();
 
@@ -16,7 +23,7 @@ class FrameProfile extends Frame {
                 <h1 class="entry-header"> ${obj.name} </h1>
                 <hr class="separator" />
                 <h4 class="foot-info"> <span class="lvl"> Level ${obj.level} |</span> ${obj.class} </h4>
-                <ul class="tracked-stats list-group row">
+                <ul class="tracked-stats list-group">
                 </ul>
             </div>
 
@@ -24,7 +31,7 @@ class FrameProfile extends Frame {
         };
         this.stat_t = (obj) => {
             return $.parseHTML(`
-                <li class="list-group-item col-xs> <span class="tracked-stat">${obj.name} :</span>
+                <li class="list-group-item"> <span class="tracked-stat">${obj.name} :</span>
                 <span class="stat-val"> ${obj.val} </span> </li>
             `.trim());
         };
@@ -35,8 +42,7 @@ class FrameProfile extends Frame {
     // pass it char.stats[]
     // TODO: change individual stats without rerendering ul
     renderStats(){
-        let ul = document.createElement('ul');
-        ul.className = 'tracked-stats list-group row';
+        let ul = $('.tracked-stats',this.content).clone();
         this.character.stats.forEach( ( stat ) => {
             let statnode = this.stat_t(stat);
             if(stat.primary) $(statnode).addClass('color-inv');

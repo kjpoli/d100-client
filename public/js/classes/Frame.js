@@ -15,7 +15,7 @@ class Frame {
         //returns dom nodes
         this.frame_t = () => {
             let nodes = $.parseHTML(`
-              <div class="card bg-faded" id="${this.frameId}">
+              <div class="card" id="${this.frameId}">
                 <div class="card-header">
                   ${this.windowTitle}
 
@@ -35,13 +35,11 @@ class Frame {
     //only run once per frame on document ready
     // use hide and show after
     insert() {
-        $(this.content).appendTo('#drag-container');
-        $(this.content).resizable(this.sizing);
-        $(this.content).draggable({
-            appendTo: "#drag-container",
-            containment: '#drag-container',
-            handle: ".card-header"
-        });
+        $(this.content).width(this.sizing.minWidth)
+        .height(this.sizing.minHeight)
+        .appendTo('#drag-container')
+        .resizable(this.sizing)
+        .draggable({handle: ".card-header"});
     }
     hide() {
         $(this.content).hide();
