@@ -5,7 +5,11 @@ var userSchema = mongoose.Schema({
     local: {
         email: String,
         password: String,
-    }
+    },
+    campaigns: [{
+        _id: { type: mongoose.Schema.Types.ObjectId, ref: 'Campaign' },
+        name: { type: String, ref: 'Campaign' } 
+    }]
 });
 
 userSchema.methods.generateHash = function(password) {
