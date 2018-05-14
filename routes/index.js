@@ -1,4 +1,5 @@
 const express = require('express');
+const url = require('url');
 
 const constructorMethod = (app, passport) => {
     var campaign = require('../controllers/campaignController');
@@ -52,27 +53,13 @@ const constructorMethod = (app, passport) => {
     app.post('/campaign/create', isLoggedIn, campaign.createCampaign);
 
     app.get('/campaign/join', isLoggedIn, async (req, res) => {
-        res.redirect(`/campaign/${req.body.campaignId}`);
+        var q = url.parse(req.url, true);
+        var campaignId = q.query.campaignId;
+        res.redirect(`/campaign/${campaignId}`);
     });
 
     app.get('/campaign/:id', isLoggedIn, campaign.joinCampaign);
 
-//    app.post('/campaign/:id', isLoggedIn,
-    /*
-    app.get('/campaign/:id/create', isLoggedIn, async (req, res) => {
-        res.render('createCharacter');
-    });
-
-    app.get('/campaign/create', isLoggedIn, async (req, res) => {
-        res.render('createCampaign.handlebars', { user: req.user });
-    });
-
-    app.post('/campaign/create', isLoggedIn, campaign.createCampaign);
-
-    app.get('/character', isLoggedIn, async (req, res) => {
-        res.render('character');
-    });
-*/
     app.get('/logout', async (req, res) => {
         req.logout();
         res.redirect('/');
