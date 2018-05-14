@@ -3,6 +3,19 @@ const Campaign = mongoose.model('Campaign');
 const Character = mongoose.model('Character');
 const User = mongoose.model('User');
 
+exports.getCampaign = async function (req, res) {
+
+    Campaign.
+        findById(req.params.id).
+        populate('dm', '_id').
+        populate('players', '_id').
+        populate('characters').
+        exec(function (err, campaign) {
+            var campaignObj = {uid: req.user._id, campaign: campaign};
+            res.status('200').json(campaignObj);
+        });
+};
+
 exports.createCampaign = async function (req, res) {
     const attributes = req.body;
     

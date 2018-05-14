@@ -42,6 +42,9 @@ const constructorMethod = (app, passport) => {
         res.render('profile', { user: req.user });
     });
 */
+
+    app.get('/dev-campaign/:id', isLoggedIn, campaign.getCampaign);
+
     app.get('/campaign', isLoggedIn, async (req, res) => {
         res.render('campaign', { user: req.user });
     });
