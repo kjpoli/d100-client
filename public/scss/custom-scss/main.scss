@@ -262,6 +262,7 @@ blockquote {
 }
 
 .tracked-inv {
+    margin-left: 0px;
     .tracked-item {
         background-color: $white;
         width: 130px;
@@ -367,6 +368,9 @@ blockquote {
     
 }
 
+#dm-display-profile {
+    padding: 0px !important;
+}
 
 .input-group {
     font-size: 10pt;
