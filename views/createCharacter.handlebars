@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="col-sm-12">
+        <h1>{{{campaign.name}}}</h1>
+        <h3>Create Characters</h3>
+        {{#if message}}
+        {{#each message}}
+            <div class="alert alert-danger">{{this}}</div>
+        {{/each}}
+        {{/if}}
+
+        <form action="/character/create" method="post">
+            <div class="input-group-text">
+                <input type="text" class = "form-control" name="characterName" placeholder="Character Name">
+            </div>
+            <div class="input-group-text">
+                <input type="text" class = "form-control" name="characterName" placeholder="Class">
+            </div>
+            <div id="attributeFields">
+                {{#if campaign.attributeTemplate}}
+                {{#each campaign.attributeTemplate}}
+                <div class="input-group mb-1" id="attRow1">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" class="primaryAttBox" name="primaryAtt1" id="primaryAtt1" value="true">
+                        </div>
+                    </div>
+                    <div class="form-control attField">{{this.name}}</div>
+                </div>
+                {{/each}}
+                {{/if}}
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button type="button" name="addAttribute" id="addAttribute" class="btn btn-warning btn-lg">Add</button>
+                </div>
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-warning btn-lg">Create Characters in Campaign</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
