@@ -25,6 +25,7 @@
             `.trim());
         this.content = this.template();
         $(this.content).appendTo('.battle-grid');
+        this.toggleVisible();
 
     }
     //no args, rotate inj status

@@ -6,6 +6,9 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
 // DB Config
 const settings = require('./config/settings');
@@ -17,7 +20,6 @@ mongoose.connect(fullMongoUrl);
 require('./config/passport')(passport);
 const Campaign = require('./models/campaign');
 
-const app = express();
 const static = express.static(__dirname + '/public');
 
 const configRoutes = require('./routes');
@@ -38,7 +40,9 @@ app.engine('handlebars', expressHandlebars({ defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 configRoutes(app, passport);
-
-app.listen(3000, () => {
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
+http.listen(3000, () => {
     console.log('We have got a server running on http://localhost:3000');
 });

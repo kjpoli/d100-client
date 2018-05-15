@@ -57,3 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
+#compiled files
+public/css/main.min.css
+public/css/public
+public/js/dist/d100-lib.js
+public/js/bootstrap-4-bundle.min.js

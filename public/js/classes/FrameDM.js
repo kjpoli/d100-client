@@ -6,17 +6,17 @@ class FrameDM extends Frame {
         this.frameId = '#dm-control-frame';
         this.windowTitle = 'Dungeon Master';
         //the player list functions as an inventory
-        this.contextualClasses = 'tracked-inv row';
+        this.contextualClasses = 'tracked-inv container row';
 
         this.sizing = {
-          minWidth: 550,
-          maxWidth: 800,
-          minHeight: 600,
+          minWidth: 800,
+          maxWidth: 1024,
+          minHeight: 400,
           maxHeight: 750
         };
 
         this.pFrames = [];
-        for(player of players){
+        for(let player of players){
             this.pFrames.push(new FrameProfile(player));
         }
 
@@ -27,7 +27,7 @@ class FrameDM extends Frame {
                 <ul id="dm-p-list" class="tracked-items list-group">
                 </ul>
               </div>
-              <div id="dm-display-profile" class="col-6"></div>
+              <div id="dm-display-profile" class="display-profile col-6"></div>
             `.trim());
         };
 
@@ -41,12 +41,13 @@ class FrameDM extends Frame {
             `.trim());
             //invokes a closure with the character baked in
             $(li).click( () => {
-                for(item of $('#dm-p-list').children()){
+                for(let item of $('#dm-p-list').children()){
                     $(item).removeClass('active');
                 }
                 $(li).addClass('active');
-                renderProfile(character);
+                this.renderProfile(character);
             } );
+            return li;
 
         };
         this.control_group_t = (character) => {
@@ -64,21 +65,29 @@ class FrameDM extends Frame {
                 </button>
              </div>
             `.trim());
-            for (button of $(controlNodes).children()){
+            for (let button of $(controlNodes).children()){
                 let info = {name: button.id.split(':')[0], charid: button.id.split('-')[1]};
+                io.emit(info.name, info.charid);
 
-            }
+            } return controlNodes;
         };
-
-        this.content = this.frame_t().append(this.body_t());
-        renderPlayerList();
+        this.content = this.frame_t();
+        $('.card-block', this.content).append(this.body_t());
+        this.renderPlayerList();
     }
     renderProfile(character) {
-        let div = $('.display-profile', this.content);
+        let div = $('#dm-display-profile', this.content);
+        div.empty();
+        let pFrameTemp = new FrameProfile(character);
+        let profileBody =$('.card-block', pFrameTemp.content).children();
+
         let selected = div.clone();
-        let pframe = this.pframeById(character._id);
-        $(selected).append(pframe.content);
-        $(this.control_group_t(character)).insertAfter('.foot-info', selected);
+        $(selected).append(profileBody);
+
+        let insPointSelector = $('.foot-info', selected);
+        let insPointNodes = $(selected).find(insPointSelector);
+
+        $(this.control_group_t(character)).insertAfter(insPointNodes);
         div.replaceWith(selected);
 
 
@@ -87,14 +96,15 @@ class FrameDM extends Frame {
     renderPlayerList(){
         let ul = $('#dm-p-list',this.content).clone();
         this.pFrames.forEach( ( pFrame ) => {
-            let pnode = this.player_list_t(pFrame.character);
+            let pnode = this.player_entry_t(pFrame.character);
+            console.log(pnode);
             $(ul).append(pnode);
         } );
 
         $('.tracked-items',this.content).replaceWith(ul);
     }
     pframeById(id){
-        for(pframe of this.pFrames){
+        for(let pframe of this.pFrames){
             if(pframe._id == id) return pframe;
         }
         return 0;

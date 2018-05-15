@@ -1,13 +1,21 @@
+<<<<<<< HEAD
 <div class="container">
     <div class="col-sm-12">
         <h1>{{{campaign.name}}}</h1>
         <h3>Create Characters</h3>
+=======
+<!DOCTYPE html>
+<div class="container">
+    <div class="col-sm-12">
+        <h1>Character Creation</h1>
+>>>>>>> acfd5cb5083363c4fd4ab526dcaa1fb8546aef88
         {{#if message}}
         {{#each message}}
             <div class="alert alert-danger">{{this}}</div>
         {{/each}}
         {{/if}}
 
+<<<<<<< HEAD
         <form action="/character/create" method="post">
             <div class="input-group-text">
                 <input type="text" class = "form-control" name="characterName" placeholder="Character Name">
@@ -39,5 +47,41 @@
                 </div>
             </div>
         </form>
+=======
+        <form action="/campaign/character" method="post">
+            <div class="form-group">
+                <input type="text" class="form-control" name="campaignId" value="{{{campaignId}}}" readonly>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" placeholder="Character Name">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="class" placeholder="Character Class">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="con" placeholder="Constitution Level">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="str" placeholder="Strength Level">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="dex" placeholder="Dexterity Level">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="cha" placeholder="Charisma Level">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="int" placeholder="Intelligence Level">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="wis" placeholder="Wisdom Level">
+            </div>
+            <button type="submit" class="btn btn-warning btn-lg">Create Character</button>
+        </form>
+
+        <p><a href="/logout" class="btn btn-default btn-lg">Logout</a></p>
+>>>>>>> acfd5cb5083363c4fd4ab526dcaa1fb8546aef88
     </div>
 </div>
