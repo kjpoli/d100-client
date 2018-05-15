@@ -67,7 +67,7 @@ class FrameDM extends Frame {
             `.trim());
             for (let button of $(controlNodes).children()){
                 let info = {name: button.id.split(':')[0], charid: button.id.split('-')[1]};
-                io.emit(info.name, info.charid);
+                socket.emit(info.name, info.charid);
 
             } return controlNodes;
         };
