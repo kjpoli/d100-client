@@ -1,7 +1,9 @@
-//var socket = io('http://localhost:3000');
-/*
+var socket = io('http://localhost:3000');
 //get campaign from db
 var bg = [];
+var players = [];
+let player;
+let dm;
 for(let player of players){
     bg.push(new BattleGridItem(player));
 }
@@ -15,11 +17,8 @@ if(player){
     var fp = new FrameProfile(player);
     fp.insert();
 }
-*/
-/*
 function bGridItemById(id){
     for(let gi of bg){
         if(gi._id == bg.id) return gi;
-    } else return 0;
+    } return 0;
 }
-*/
