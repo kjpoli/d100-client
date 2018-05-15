@@ -60,6 +60,12 @@ const constructorMethod = (app, passport) => {
 
     app.get('/campaign/:id', isLoggedIn, campaign.joinCampaign);
 
+    app.get('/campaign/:id/character', isLoggedIn, async (req, res) => {
+        if (req.params.id == null) throw "No id provided";
+        const campaignData = await campaign.getCampaign(req.params.id);
+        res.render('createCharacter', { campaign: campaignData });
+    });
+
     app.get('/logout', async (req, res) => {
         req.logout();
         res.redirect('/');

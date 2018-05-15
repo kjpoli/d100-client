@@ -3,6 +3,12 @@ const Campaign = mongoose.model('Campaign');
 const Character = mongoose.model('Character');
 const User = mongoose.model('User');
 
+exports.getCampaign = async function (campaignId) {
+    if (campaignId == null) throw "No campaignId provided.";
+    let campaign = await Campaign.findById(campaignId);
+    return campaign;
+};
+
 exports.createCampaign = async function (req, res) {
     const attributes = req.body;
     
@@ -61,6 +67,14 @@ exports.createCampaign = async function (req, res) {
             //campaign created!
         }
     });
+};
+
+exports.addCharacter = async function (req, res) {
+    // if (req.params == null) return;
+    // if (req.params.id) 
+
+    // let campaignId = req.params.id;
+
 };
 
 exports.joinCampaign = async function (req, res) {
