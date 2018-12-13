@@ -1,27 +1,32 @@
 var socket = io();
-//get campaign from db
 var bg = [];
-var cid = window.location.pathname.split('/')[1];
-var setup = $.get('http://localhost:3000/dev/campaign/' + cid);
-var uid = setup.uid;
-var campaign = setup.campaign;
+var cid = window.location.pathname.split('/')[2];
 
-let dm;
-for(let player of campaign.characters){
-    bg.push(new BattleGridItem(player));
-}
+socket.on('connect', () =>{
+    socket.emit('getCampaign', cid);
+});
+socket.on('gameInit', (pkg) => {
+    var uid = pkg.uid;
+    var campaign = pkg.campaign;
 
-if(uid == campaign._dmid){
-    var fdm = new FrameDM(players);
-    fdm.insert();
-}else{
-    for(let character of campaign.characters){
-        if(character.user == uid){
-            var fp = new FrameProfile(player);
-            fp.insert();
+    let dm;
+    for(let player of campaign.characters){
+        bg.push(new BattleGridItem(player));
+    }
+
+    if(uid == campaign.dm){
+        var fdm = new FrameDM(campaign.characters);
+        fdm.insert();
+    }else{
+        for(let character of campaign.characters){
+            if(character.user == uid){
+                var fp = new FrameProfile(character);
+                fp.insert();
+            }
         }
     }
-}
+
+});
 socket.on('btnVis', (id) => {
     let item = bGridItemById(id);
     item.toggleVisibility();

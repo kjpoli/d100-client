@@ -5,7 +5,7 @@ const User = mongoose.model('User');
 
 exports.getCampaign = async function (req, res) {
 
-    Campaign.
+    await Campaign.
         findById(req.params.id).
         populate('dm', '_id').
         populate('players', '_id').
@@ -90,8 +90,11 @@ exports.joinCampaign = async function (req, res) {
             if (err) {
                 res.status('404').send('Campaign Not Found');
             } else {
+                res.locals.user = userId;
+                res.locals.campaign = campaign;
+
                 if (userId.equals(campaign.dm._id)) {
-                    res.render('./layouts/gameboard', { layout: false });
+                    res.render('layouts/gameboard', { layout: false, uid: userId, campaign: campaign });
                 } else {
                     /*
                     User.
@@ -109,7 +112,8 @@ exports.joinCampaign = async function (req, res) {
                     */
                     for (let id of campaign.players) {
                         if (userId.equals(id._id)) {
-                            res.render('./layouts/gameboard', { layout: false });
+                            res.status('200').send('OK');
+                            res.render('layouts/gameboard', { layout: false });
                         }
                     }
                     

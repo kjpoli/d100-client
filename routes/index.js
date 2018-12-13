@@ -43,7 +43,7 @@ const constructorMethod = (app, passport) => {
     });
 */
 
-    app.get('/dev-campaign/:id', isLoggedIn, campaign.getCampaign);
+    app.get('/dev/campaign/:id', isLoggedIn, campaign.getCampaign);
 
     app.get('/campaign', isLoggedIn, async (req, res) => {
         res.render('campaign', { user: req.user });
@@ -56,9 +56,10 @@ const constructorMethod = (app, passport) => {
     app.post('/campaign/create', isLoggedIn, campaign.createCampaign);
 
     app.get('/campaign/join', isLoggedIn, async (req, res) => {
+        app.locals.uid = req.user._id;
         var q = url.parse(req.url, true);
         var campaignId = q.query.campaignId;
-        res.redirect(`/campaign/${campaignId}`);
+        res.redirect(`/dev/game`);
     });
 /*
     app.get('/campaign/character', isLoggedIn, async (req, res) => {
